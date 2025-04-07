@@ -18,6 +18,22 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 6111, host: 6111
   config.vm.network "forwarded_port", guest: 6112, host: 6112
   config.vm.network "forwarded_port", guest: 6443, host: 6443
+  for p in 30000..30100 # expose NodePort IP's
+    config.vm.network "forwarded_port", guest: p, host: p, protocol: "tcp"
+    end
+  config.vm.provider "virtualbox" do |v|
+    v.memory = "3072"
+    v.name = "master"
+    end
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo zypper refresh
+    sudo zypper --non-interactive install bzip2
+    sudo zypper --non-interactive install etcd
+    sudo zypper --non-interactive install apparmor-parser
+    sudo zypper --non-interactive install git
+    curl -sfL https://get.k3s.io | sh -
+  SHELL
+
   # Set the static IP for the vagrant box
   config.vm.network "private_network", ip: "192.168.50.4"
 
