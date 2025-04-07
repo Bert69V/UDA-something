@@ -1,0 +1,102 @@
+openapi: 3.1.1
+info:
+  version: '1.0'
+  title: 'Connection endpoints Api '
+  description: This API retrieves all connections for a specific person
+servers:
+  -  description: Person API for Uda Connect
+     url: http://localhost:30002/
+
+paths:
+ /api/persons/{personId}/connection:
+    get:
+      summary: gets connections for person by id
+      parameters:
+      - name: personId
+        in: path
+        description:  ID of the person to get near by connections
+        required: true
+        schema:
+          type: integer
+      - name: start_date
+        in: query
+        description:  start date of visit should be combined with 'end_date'
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        description:  end date of visit should be combined with 'start_date'
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: distance
+        in: query
+        description:  how far is the distance between the person location and his connections
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+
+components:
+  schemas:
+    Connection:
+      type: object
+      properties:
+        location:
+          $ref: '#/components/schemas/Location'
+        person:
+          $ref: '#/components/schemas/Person'
+
+    Person:
+      required:
+      - company_name
+      - first_name
+      - id
+      - last_name
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        first_name:
+          type: string
+          example: Bart
+        last_name:
+          type: string
+          example: Simpson
+        company_name:
+          type: string
+          example: Burns Enterprise
+
+    Location:
+      required:
+      - id
+      - person_id
+      - creation_time
+      - latitude
+      - longtitude
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        creation_time:
+          type: string
+          example: '2024-12-25T10:26:02'
+        latitude:
+          type: number
+          example: 43.2315
+        longtitude:
+          type: number
+          example: -124106.57

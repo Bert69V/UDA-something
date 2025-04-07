@@ -1,0 +1,4 @@
+kafka-python
+grpcio==1.67.0
+grpcio-tools==1.67.0
+psycopg2-binary

@@ -1,0 +1,7 @@
+
+Location-Service, gRPC and Kafka
+The Location service records the user's coordinates, e.g. by means of an app that determines and provides this data (frontend). The message technology used for transmission is gRPC.
+As the data here is extremely standardised and no other fields are likely to be transferred in the near future, gRPC is a good method. gRPC then transfers the data to a Kafka interface. In this way, even large amounts of data can be processed because this is done asynchronously. Specifically: The app does not wait for a response
+
+Person and Connection
+I've chosen to use REST for the microservies Person and Connection, because it ensures simplicity and scalability by leveraging standardized HTTP methods (e.g., GET person by id or GET all persons) and stateless interactions.

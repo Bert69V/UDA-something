@@ -1,0 +1,370 @@
+    {
+        "info": {
+            "_postman_id": "fc91b1a7-2450-4f1e-ad91-083dcbe680c4",
+            "name": "Persons REST API",
+            "description": "API for managing persons and connections",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+        },
+        "item": [
+            {
+                "name": "Persons",
+                "item": [
+                    {
+                        "name": "GET all persons",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"status\": \"rejected\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:30001/api/persons",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30001",
+                                "path": [
+                                    "api",
+                                    "persons"
+                                ]
+                            }
+                        },
+"response": [
+				{
+					"name": "GET all persons",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30001/api/persons",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"persons"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "232"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.1 Python/3.7.12"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 11:21:06 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"first_name\": \"Taco\",\n        \"last_name\": \"Fargo\",\n        \"company_name\": \"Alpha Omega Upholstery\",\n        \"id\": 5\n    },\n    {\n        \"first_name\": \"Frank\",\n        \"last_name\": \"Shader\",\n        \"company_name\": \"USDA\",\n        \"id\": 6\n    },\n    {\n        \"first_name\": \"Pam\",\n        \"last_name\": \"Trexler\",\n        \"company_name\": \"Hampton, Hampton and McQuill\",\n        \"id\": 1\n    },\n    {\n        \"first_name\": \"Paul\",\n        \"last_name\": \"Badman\",\n        \"company_name\": \"Paul Badman & Associates\",\n        \"id\": 8\n    },\n    {\n        \"first_name\": \"Otto\",\n        \"last_name\": \"Spring\",\n        \"company_name\": \"The Chicken Sisters Restaurant\",\n        \"id\": 9\n    },\n    {\n        \"first_name\": \"Ayman\",\n        \"last_name\": \"Moawad\",\n        \"company_name\": \"BDC\",\n        \"id\": 1222\n    },\n    {\n        \"first_name\": \"Zeina\",\n        \"last_name\": \"Moawad\",\n        \"company_name\": \"BDC\",\n        \"id\": 1555\n    },\n    {\n        \"first_name\": \"Nour\",\n        \"last_name\": \"Moawad\",\n        \"company_name\": \"BDC\",\n        \"id\": 1666\n    }\n]"
+				}
+			]
+		},
+                    {
+                        "name": "GET person by Id",
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "url": {
+                                "raw": "http://localhost:30001/api/persons/6",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30001",
+                                "path": [
+                                    "api",
+                                    "persons",
+                                    "6"
+                                ]
+                            }
+                        },
+"response": [
+				{
+					"name": "GET person by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:30001/api/persons/6",
+							"host": [
+								"localhost"
+							],
+							"port": "30001",
+							"path": [
+								"api",
+								"persons",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.16.1 Python/3.7.12"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 07 Apr 2025 11:48:39 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"company_name\": \"USDA\",\n    \"first_name\": \"Frank\",\n    \"id\": 6,\n    \"last_name\": \"Shader\"\n}"
+				}
+			]
+		},
+                    {
+                        "name": "POST Add a person",
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"first_name\": \"Bart\",\r\n    \"last_name\": \"Simpson\",\r\n    \"company_name\": \"Moes Taverne\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:30001/api/persons",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30001",
+                                "path": [
+                                    "api",
+                                    "persons"
+                                ]
+                            }
+                        },
+                        "response": [
+                            {
+                                "name": "Add a person",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n    \"first_name\":\"Bart\",\n    \"last_name\":\"Simpson\",\n    \"company_name\":\"Moes Tavern\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:30001/api/persons",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "30001",
+                                        "path": [
+                                            "api",
+                                            "persons"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "id",
+                                                "value": "21",
+                                                "description": "Person ID",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "80"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Server",
+                                        "value": "Werkzeug/0.16.1 Python/3.7.12"
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Mon, 06 Apr 2051 11:25:11 GMT"
+                                    }
+                                ],
+                                "cookie": [],
+                                "body": "{\n    \"first_name\": \"Bart\",\n    \"last_name\": \"Simpsons\",\n    \"company_name\": \"Moes Tavern\",\n    \"id\": 21\n}"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "GET connections for a specific person",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"status\": \"rejected\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:30002/api/connections/1?start_date=2020-03-01&end_date=2020-06-30&distance=6",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "30002",
+                                "path": [
+                                    "api",
+                                    "connections",
+                                    "1"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "start_date",
+                                        "value": "2020-03-01"
+                                    },
+                                    {
+                                        "key": "end_date",
+                                        "value": "2020-06-30"
+                                    },
+                                    {
+                                        "key": "distance",
+                                        "value": "6"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [
+                            {
+                               "name": "GET connections for a specific person",
+                                "originalRequest": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                        "raw": "http://localhost:30002/api/persons/8/connection?start_date=2020-03-01&end_date=2020-06-30&distance=6",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "30002",
+                                        "path": [
+                                            "api",
+                                            "persons",
+                                            "8",
+                                            "connection"
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "start_date",
+                                                "value": "2020-01-01"
+                                            },
+                                            {
+                                                "key": "end_date",
+                                                "value": "2020-06-30"
+                                            },
+                                            {
+                                                "key": "distance",
+                                                "value": "6"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "473"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Server",
+                                        "value": "Werkzeug/0.16.1 Python/3.7.12"
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Mon, 06 Apr 2025 08:19:20 GMT"
+                                    }
+                                ],
+                                "cookie": [],
+                                "body": "[\n    {\n        \"location\": {\n            \"id\": 63,\n            \"person_id\": 5,\n            \"creation_time\": \"2020-01-05T10:37:06\",\n            \"latitude\": \"35.0585136\",\n            \"longitude\": \"-106.5719521\"\n        },\n        \"person\": {\n            \"id\": 5,\n            \"first_name\": \"Taco\",\n            \"company_name\": \"Alpha Omega Upholstery\",\n            \"last_name\": \"Fargo\"\n        }\n    },\n    {\n        \"location\": {\n            \"id\": 64,\n            \"person_id\": 6,\n            \"creation_time\": \"2020-01-05T10:37:06\",\n            \"latitude\": \"35.0585136\",\n            \"longitude\": \"-106.5719521\"\n        },\n        \"person\": {\n            \"id\": 6,\n            \"first_name\": \"Frank\",\n            \"company_name\": \"USDA\",\n            \"last_name\": \"Shader\"\n        }\n    }\n]"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }

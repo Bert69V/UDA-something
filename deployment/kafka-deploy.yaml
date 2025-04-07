@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  serviceName: kafka-headless
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: bitnami/kafka:latest
+        env:
+          - name: ALLOW_PLAINTEXT_LISTENER
+            value: "yes"
+          - name: KAFKA_CFG_PROCESS_ROLES
+            value: "broker,controller"
+          - name: KAFKA_CFG_NODE_ID
+            value: "1"
+          - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+            value: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+          - name: KAFKA_CFG_SOCKET_REQUEST_MAX_BYTES
+            value: "209715200" # 200MB
+          - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
+            value: "CONTROLLER"
+          - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
+            value: "1@kafka-0.kafka-headless.default.svc.cluster.local:9093"
+          - name: KAFKA_CFG_LISTENERS
+            value: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"
+          - name: KAFKA_CFG_ADVERTISED_LISTENERS
+            value: "PLAINTEXT://kafka-0.kafka-headless.default.svc.cluster.local:9092,CONTROLLER://kafka-0.kafka-headless.default.svc.cluster.local:9093"
+          - name: KAFKA_CFG_LOG_DIRS
+            value: "/bitnami/kafka/data"
+        ports:
+          - containerPort: 9092
+            name: client
+          - containerPort: 9093
+            name: controller
+        volumeMounts:
+          - name: data
+            mountPath: /bitnami/kafka/data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-headless
+  namespace: default
+spec:
+  clusterIP: None
+  selector:
+    app: kafka
+  ports:
+    - port: 9092
+      name: client-port
+    - port: 9093
+      name: controller-port
