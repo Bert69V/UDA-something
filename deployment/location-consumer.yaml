@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: location-consumer
-          image: bert69/location-consumer:v1.2.2
+          image: bert69/location-consumer:v1.3.0
           env:
           - name: DB_USERNAME
             valueFrom:

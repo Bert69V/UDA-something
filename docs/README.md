@@ -12,9 +12,11 @@ In this directory you'll find all required documents for Uda Connect
     • Postman collection of REST API-Calls
 
 
-
-    • GRPC documentation of your endpoint and how to make a sample request -grpc.txt
-
     • Screenshot of kubectl get pods
 
     • Screenshot of kubectl get services
+
+
+    This application uses Kafka without Zookepper in KRaft mode.
+    The services for Location Producer are already included in the yaml-file location-producer.yaml.
+    The service for the consumer is already included in the yaml-file location-consumer.yaml.

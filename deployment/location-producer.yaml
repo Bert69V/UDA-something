@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: location-producer
-        image: bert69/location-producer:v1.2.0
+        image: bert69/location-producer:v1.3.0
         imagePullPolicy: Always
         ports:
         - containerPort: 50051

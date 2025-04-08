@@ -12,7 +12,6 @@ from kafka.errors import KafkaError
 
 class LocationServicer(location_pb2_grpc.LocationServiceServicer):
 
-
         def Create(self, request, context):
 
             request_value = {
